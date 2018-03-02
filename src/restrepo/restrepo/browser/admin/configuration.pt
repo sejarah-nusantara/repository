@@ -1,0 +1,62 @@
+<html>
+<head>
+  <title>Configuration</title>
+  <link tal:attributes="href
+      request.static_url('restrepo:static/bootstrap/css/bootstrap.css')"
+      rel="stylesheet" media="screen">
+  <link tal:attributes="href
+      request.static_url('restrepo:static/css/admin.css')"
+      rel="stylesheet" media="screen">
+  <script tal:attributes="src
+      request.static_url('restrepo:static/jquey-1.8.2.js')">
+  </script>
+  <script tal:attributes="src
+      request.static_url('restrepo:static/underscore.js')">
+  </script>
+  <script tal:attributes="src
+      request.static_url('restrepo:static/backbone.js')">
+  </script>
+  <script tal:attributes="src
+      request.static_url('restrepo:static/bootstrap/js/bootstrap.js')">
+  </script>
+  <script>
+  //  initialize_main();
+  </script>
+    <link rel="stylesheet" href="/deform_static/css/form.css"
+          type="text/css"
+            />
+    <script type="text/javascript"
+            src="/deform_static/scripts/deform.js"></script>
+
+
+</head>
+
+<body>
+  <h1></h1>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="hero-unit">
+          <h2>Configuration Settings</h2>
+          <h3>Watermark</h3>
+          <div id="main">
+<div tal:content="structure form">form</div>
+<p class="text-warning">Attention! If you change these data, the cache will be reset. That means that it will take some time everytime a new image is requested from the respository.
+</p>
+<p>Here is an example:
+</p>
+<p>
+<img src="${example_image}"></img>
+</p>
+<p>
+<a href="${example_image}">${example_image}</a>
+</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+</html>

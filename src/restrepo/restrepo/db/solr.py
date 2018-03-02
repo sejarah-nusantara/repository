@@ -1,0 +1,1 @@
+from restrepo.solr import *

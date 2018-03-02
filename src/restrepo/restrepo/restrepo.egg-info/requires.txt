@@ -1,0 +1,14 @@
+cornice
+PasteScript
+sqlalchemy
+psycopg2
+pyramid_tm
+zope.sqlalchemy
+colander
+lxml
+pytz
+python-dateutil
+sqlalchemy-migrate
+Pillow
+mysolr
+pyramid_ipauth

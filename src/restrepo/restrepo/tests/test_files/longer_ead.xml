@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE ead PUBLIC "+//ISBN 1-931666-00-8//DTD ead.dtd (Encoded Archival Description (EAD) Version 2002)//EN" "http://lcweb2.loc.gov/xmlcommon/dtds/ead2002/ead.dtd">
+<ead>
+<eadheader>
+  <eadid countrycode="GH">HR</eadid>  
+  <filedesc>
+  <titlestmt><titleproper>Title</titleproper></titlestmt>
+ </filedesc>
+  <profiledesc>
+  <langusage>
+        <language langcode="eng" encodinganalog="Language">English</language>
+  </langusage>
+  </profiledesc>
+  
+</eadheader>
+<archdesc level="fonds">
+  <did>
+    <unittitle>UNITTITLE</unittitle>
+    <unitid repositorycode="GH-PRAAD" countrycode="GH" encodinganalog="3.1.1">RG1</unitid>
+
+  </did>
+  <dsc>
+    <c01 level="file">
+      <did>
+        <unittitle>Original Letter</unittitle>
+        <unitid>ARCHIVE_FILE_ID_1</unitid>
+      </did>
+    </c01>
+    <c01 level="file">
+      <did>
+        <unittitle>Original Letter</unittitle>
+        <unitid>ARCHIVE_FILE_ID_2</unitid>
+      </did>
+    </c01>
+   <c01 level="otherlevel">
+      <did>
+        <unittitle encodinganalog="3.1.2">Recording</unittitle>
+        <unitid  encodinganalog="3.1.1">RC</unitid>
+        <unitdate datechar="creation" normal="1612/1812" encodinganalog="3.1.3">1612 - 1812</unitdate>
+        <physdesc><extent encodinganalog="3.1.5">Not recorded</extent></physdesc>
+      </did>
+         <c02 level="file">
+          <did>
+            <unittitle>Original Letter [w. brackets]</unittitle>
+            <unitid>ARCHIVE_FILE_ID_3 [with square brackets]</unitid>
+          </did>
+        </c02>
+      </c01>
+  </dsc>
+</archdesc>
+</ead> 

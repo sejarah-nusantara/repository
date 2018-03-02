@@ -1,0 +1,106 @@
+# 
+# This file is just like restrepo.in (which is used for production),
+#  except that it adds logging (as per http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/logging.html)
+# 
+[pipeline:main]
+pipeline = 
+	egg:z3c.evalexception#ajax
+	pyramidapp
+
+[app:pyramidapp]
+use = egg:restrepo
+pyramid.includes =
+    pyramid_debugtoolbar
+
+pyramid.reload_templates = true
+pyramid.reload_resources = true
+pyramid.debug_authorization = false
+pyramid.debug_notfound = false
+pyramid.debug_routematch = false
+pyramid.debug_templates = false
+pyramid.default_locale_name = en
+
+sqlalchemy.url = ${db_url}
+solr.url = http://localhost:${solr_port}/solr/
+
+ipauth.ipaddrs = ${settings:authorized_ips}
+ipauth.proxies = 127.0.0.1
+ipauth.principals = locals
+
+publish_in_pagebrowser.url = ${publish_in_pagebrowser_url}
+unpublish_in_pagebrowser.url = ${unpublish_in_pagebrowser_url}
+
+watermark_file = ${watermark_file}
+watermark_pos_x = ${watermark_pos_x}
+watermark_pos_y = ${watermark_pos_y}
+watermark_size = ${watermark_size}
+watermark_image_format = ${watermark_image_format}
+watermark.debug = true
+
+[server:main]
+use = egg:Paste#http
+host = 0.0.0.0
+port = ${main_port}
+
+[loggers]
+keys = root, restrepo, restrepo.db_operations, exc_logger, restrepo.pagebrowser_update
+
+[logger_root]
+level = DEBUG
+handlers = console
+
+[logger_restrepo]
+level = DEBUG
+handlers = console, restrepo_errors_filelog
+qualname = restrepo
+
+[logger_restrepo.db_operations]
+level = DEBUG
+handlers = console, db_operations_filelog
+qualname = restrepo.db_operations
+
+[logger_restrepo.pagebrowser_update]
+level = DEBUG
+handlers = console
+qualname = restrepo.pagebrowser_update
+
+[logger_exc_logger]
+level = ERROR
+handlers = exc_handler
+qualname = exc_logger
+
+[handlers]
+keys = console, db_operations_filelog, restrepo_errors_filelog, exc_handler
+
+[handler_db_operations_filelog]
+class = handlers.RotatingFileHandler
+args = ('/var/log/dasa/repository.db_operations.log','a', 1000000, 100)
+level = INFO
+formatter = simple
+
+[handler_restrepo_errors_filelog]
+class = handlers.RotatingFileHandler
+args = ('/var/log/dasa/repository.error.log','a', 1000000, 100)
+level = WARNING
+formatter = simple
+
+[handler_exc_handler]
+class = handlers.RotatingFileHandler
+args = ('/var/log/dasa/repository.error.log','a', 1000000, 100)
+level = ERROR
+formatter = simple
+
+[handler_console]
+class = StreamHandler
+args = (sys.stderr,)
+level = NOTSET
+formatter = generic
+
+[formatters]
+keys = generic, simple
+
+[formatter_generic]
+format = %(asctime)s %(levelname)-5.5s [%(name)s][%(threadName)s] %(message)s
+
+[formatter_simple]
+format = %(asctime)s: %(message)s

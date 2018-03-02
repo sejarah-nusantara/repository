@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE ead PUBLIC "+//ISBN 1-931666-00-8//DTD ead.dtd (Encoded Archival Description (EAD) Version 2002)//EN" "http://lcweb2.loc.gov/xmlcommon/dtds/ead2002/ead.dtd">
+<ead>
+<eadheader>
+  <eadid countrycode="GH">FindingAid</eadid>  
+  <filedesc>
+      <titlestmt><titleproper>Title</titleproper></titlestmt>
+  </filedesc>
+  <profiledesc>
+      <langusage>
+            <language langcode="nl" encodinganalog="Language">Nederlands</language>
+      </langusage>
+  </profiledesc>
+</eadheader>
+<archdesc level="fonds">
+  <did>
+    <unittitle>UNITTITLE</unittitle>
+    <unitid repositorycode="GH-PRAAD" countrycode="GH" encodinganalog="3.1.1">RG1</unitid>
+  </did>
+  <dsc>
+    <c level="file">
+      <did>
+        <unittitle>Original Letter</unittitle>
+        <unitdate datechar="creation" normal="1612/1812" encodinganalog="3.1.3">1612 - 1812</unitdate>
+        <unitid>ARCHIVE_FILE_ID</unitid>
+      </did>
+    </c>
+    <c level="file">
+      <did>
+        <unittitle encodinganalog="3.1.2">1765 juni 4 - 1765 juni [27]</unittitle>
+        <unitid  encodinganalog="3.1.1">1504</unitid>
+        <unitdate datechar="creation" normal="1765-6-4/1765-6" encodinganalog="3.1.3">1765-6-4 - 1765-6</unitdate>
+      </did>
+    </c>
+  </dsc>
+</archdesc>
+</ead> 

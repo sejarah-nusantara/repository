@@ -1,0 +1,100 @@
+[circus]
+statsd = 1
+httpd = 1
+check_delay = 5
+endpoint = ipc:///${buildout:directory}/var/circus/endpoint
+pubsub_endpoint = ipc:///${buildout:directory}/var/circus/pubsub
+stats_endpoint = ipc:///${buildout:directory}/var/circus/stats
+httpd_port = ${ports:circus_httpd}
+
+[watcher:repository]
+cmd = bin/paster serve restrepo.ini
+numprocesses = 4
+working_dir = ${buildout:directory} 
+# chausette will work as well (don't forget to define a socket)
+# cmd = bin/chaussette --fd $(circus.sockets.repository) paste:restrepo.ini
+
+# will push in repository.log the stream every 300 ms
+stdout_stream.class = FileStream
+stdout_stream.filename = ${buildout:directory}/var/log/repository_stdout.log
+# optionally rotate the log file when it reaches 10 Mb 
+# and save 5 copied of rotated files
+stdout_stream.max_bytes = 10485800
+stdout_stream.backup_count = 5
+stdout_stream.class = FileStream
+
+# will push in repository.log the stream every 300 ms
+stderr_stream.class = FileStream
+stderr_stream.filename = ${buildout:directory}/var/log/repository_stderr.log
+# optionally rotate the log file when it reaches 10 Mb 
+# and save 5 copied of rotated files
+stderr_stream.max_bytes = 10485800
+stderr_stream.backup_count = 5
+stderr_stream.class = FileStream
+
+[watcher:solr]
+cmd = java -Duser.language=en -Duser.country=US -Djava.security.egd=file:/dev/urandom -jar start.jar 
+working_dir =${buildout:parts-directory}/solr
+
+# will push in solr.log the stream every 300 ms
+stdout_stream.class = FileStream
+stdout_stream.filename = ${buildout:directory}/var/log/solr.log
+
+# optionally rotate the log file when it reaches 10 Mb 
+# and save 5 copied of rotated files
+stdout_stream.max_bytes = 10485800
+stdout_stream.backup_count = 5
+stdout_stream.class = FileStream
+
+[watcher:celeryd]
+cmd = ${buildout:directory}/bin/celery worker -A restrepo.celery_tasks
+working_dir = ${buildout:directory} 
+
+stdout_stream.class = FileStream
+stdout_stream.filename = ${buildout:directory}/var/log/celeryd_stdout.log
+# optionally rotate the log file when it reaches 10 Mb 
+# and save 5 copied of rotated files
+stdout_stream.max_bytes = 10485800
+stdout_stream.backup_count = 5
+stdout_stream.class = FileStream
+
+stderr_stream.class = FileStream
+stderr_stream.filename = ${buildout:directory}/var/log/celeryd_stderr.log
+# optionally rotate the log file when it reaches 10 Mb 
+# and save 5 copied of rotated files
+stderr_stream.max_bytes = 10485800
+stderr_stream.backup_count = 5
+stderr_stream.class = FileStream
+
+[watcher:celery_flower]
+cmd = ${buildout:directory}/bin/celery flower --port=${ports:celery_flower} --url_prefix=flower
+working_dir =  ${buildout:directory} 
+
+[watcher:test_solr]
+autostart=${circus-config:autostart_test_solr}
+cmd = java -Duser.language=en -Duser.country=US -Djava.security.egd=file:/dev/urandom -jar start.jar
+working_dir = ${buildout:parts-directory}/test_solr
+
+[watcher:test_repository]
+cmd = bin/paster serve restrepo_test.ini
+numprocesses = 2
+working_dir = ${buildout:directory}
+autostart=${circus-config:autostart_test_repository}
+
+# will push in repository.log the stream every 300 ms
+stdout_stream.class = FileStream
+stdout_stream.filename = ${buildout:directory}/var/log/test_repository_stdout.log
+# optionally rotate the log file when it reaches 10 Mb 
+# and save 5 copied of rotated files
+stdout_stream.max_bytes = 10485800
+stdout_stream.backup_count = 5
+stdout_stream.class = FileStream
+
+# will push in repository.log the stream every 300 ms
+stderr_stream.class = FileStream
+stderr_stream.filename = ${buildout:directory}/var/log/test_repository_stderr.log
+# optionally rotate the log file when it reaches 10 Mb 
+# and save 5 copied of rotated files
+stderr_stream.max_bytes = 10485800
+stderr_stream.backup_count = 5
+stderr_stream.class = FileStream

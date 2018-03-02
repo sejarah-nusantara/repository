@@ -1,0 +1,91 @@
+<html>
+<head>
+  <title>Scan repository</title>
+  <link tal:attributes="href
+      request.static_url('restrepo:static/bootstrap/css/bootstrap.css')"
+      rel="stylesheet" media="screen">
+  <link tal:attributes="href
+      request.static_url('restrepo:static/css/admin.css')"
+      rel="stylesheet" media="screen">
+  <script tal:attributes="src
+      request.static_url('restrepo:static/jquey-1.8.2.js')">
+  </script>
+  <script tal:attributes="src
+      request.static_url('restrepo:static/underscore.js')">
+  </script>
+  <script tal:attributes="src
+      request.static_url('restrepo:static/backbone.js')">
+  </script>
+  <script tal:attributes="src
+      request.static_url('restrepo:static/bootstrap/js/bootstrap.js')">
+  </script>
+  <script tal:attributes="src
+      request.static_url('restrepo:static/jquery.dataTables.js')">
+  </script>
+  <script tal:attributes="src
+      request.static_url('restrepo:static/bootstrap/js/paging.js')">
+  </script>
+  <script tal:attributes="src
+      request.static_url('restrepo:static/js/admin.js')">
+  </script>
+  <script>
+    initialize_main();
+  </script>
+</head>
+<body>
+  <h1></h1>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span3">
+        <div class="well sidebar-nav">
+
+          <ul class="nav nav-list" id="navigation">
+            <li class="nav-header">Objects in repository</li>
+            <li><a href="#">Scans</a></li>
+            <li><a href="#">EAD</a></li>
+            <li><a href="#">Logs</a></li>
+          </ul>
+          </div>
+        <div class="well sidebar-nav">
+          <ul class="nav nav-list">
+            <li><a href="/configuration">Configuration Watermarker</a></li>
+          </ul>
+        </div>
+
+        <div class="well sidebar-nav" id="ead-add-panel">
+          <form enctype="multipart/form-data" class="form-inline">
+              <input type="file" name="file" id="eadfileinput" placeholder="Choose an EAD file"/>
+              <div class="progress">
+                <div class="bar" style="width: 0%;"></div>
+              </div>
+              <div class="form-actions">
+                <a type="submit" id="addead" class="btn btn-small span6 offset6" disabled="disabled">
+                  Upload
+                  <i class="icon-upload"></i>
+                </a>
+              </div>
+              <span id="ead-errors">
+              </span>
+          </form>
+        </div>
+
+      </div><!--/span-->
+      <div class="span9">
+        <div class="hero-unit">
+          <h2>Repository for EAD files and scans</h2>
+          <h3>Basic data browsing</h3>
+          <h4>
+            <span class="label label-warning">Warning</span>
+            This is still in development. Some things don't work yet.
+          </h4>
+          <h2></h2>
+          <div id="main">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+</html>

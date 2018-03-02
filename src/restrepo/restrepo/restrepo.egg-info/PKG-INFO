@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: restrepo
+Version: 0.1
+Summary: UNKNOWN
+Home-page: http://example.com
+Author: Jelle Gerbrandy, Silvio Tomatis
+Author-email: jelle@gerbrandy.com, silviot@gmail.com
+License: UNKNOWN
+Description: Documentation
+        =============
+        
+        Put a brief description of 'restrepo'.
+        
+Keywords: web services
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Framework :: Pylons
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Application
